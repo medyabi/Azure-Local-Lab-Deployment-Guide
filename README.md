@@ -2,6 +2,8 @@
 
 **Single node · nested Hyper-V · field-tested**
 
+![Azure Local lab architecture: Hyper-V host with MCT-DC and AZLNode1 VMs, LAN router, and Azure resources](docs/lab-architecture.svg)
+
 *Every step and fix in this guide comes from a real deployment that completed on 9 November 2026.*
 
 > **Lab and training use only.** Microsoft doesn't support nested Azure Local for production. The original Word version is in [`docs/AzureLocal-Lab-Deployment-Guide-v3.docx`](docs/AzureLocal-Lab-Deployment-Guide-v3.docx).
@@ -13,13 +15,8 @@
 | Lab              | Host + MCT-DC (domain MCT.LAB) + node AZLNode1, network 192.168.100.0/24 |
 | Guide version    | 3.0 — November 2026 (replaces 2.0)                                       |
 
-## Lab architecture
-
-![Azure Local lab architecture: Hyper-V host with MCT-DC and AZLNode1 VMs, LAN router, and Azure resources](docs/lab-architecture.svg)
-
 ## Contents
 
-- [Lab architecture](#lab-architecture)
 - [Before you start](#before-you-start)
 - [1. Prerequisites](#1-prerequisites)
 - [2. Phase 0 — Tools on the Hyper-V host](#2-phase-0--tools-on-the-hyper-v-host)
