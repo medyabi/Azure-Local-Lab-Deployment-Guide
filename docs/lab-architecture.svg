@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 820" width="1240" height="820" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6472"/>
+    </marker>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0f6cbd"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f7d32"/>
+    </marker>
+  </defs>
+
+  <rect width="1240" height="820" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="40" y="46" font-size="24" font-weight="700" fill="#1b1f24">Azure Local lab — single node on nested Hyper-V</text>
+  <text x="40" y="72" font-size="14" fill="#5b6472">Network 192.168.100.0/24 · domain MCT.LAB · release 2608 · region westeurope</text>
+
+  <!-- ================= HYPER-V HOST ================= -->
+  <rect x="40" y="100" width="660" height="540" rx="14" fill="#f4f6f9" stroke="#8a94a3" stroke-width="1.5"/>
+  <text x="62" y="130" font-size="17" font-weight="700" fill="#1b1f24">Hyper-V host</text>
+  <text x="62" y="150" font-size="13" fill="#5b6472">Windows Server 2025 · nested virtualization · Az PowerShell (Az.Resources)</text>
+
+  <!-- MCT-DC VM -->
+  <rect x="64" y="172" width="270" height="230" rx="10" fill="#ffffff" stroke="#6b4fbb" stroke-width="1.8"/>
+  <rect x="64" y="172" width="270" height="34" rx="10" fill="#6b4fbb"/>
+  <rect x="64" y="194" width="270" height="12" fill="#6b4fbb"/>
+  <text x="80" y="195" font-size="15" font-weight="700" fill="#ffffff">VM · MCT-DC</text>
+  <text x="318" y="195" font-size="13" fill="#ffffff" text-anchor="end">192.168.100.80</text>
+  <text x="80" y="230" font-size="13.5" font-weight="600" fill="#1b1f24">AD DS — domain MCT.LAB</text>
+  <text x="80" y="249" font-size="12.5" fill="#3d4450">OU=AzureLocal,DC=MCT,DC=LAB</text>
+  <text x="80" y="267" font-size="12.5" fill="#3d4450">Deployment account AzLDeployUser</text>
+  <text x="80" y="295" font-size="13.5" font-weight="600" fill="#1b1f24">DNS server</text>
+  <text x="80" y="313" font-size="12.5" fill="#3d4450">Zone MCT.LAB + internet forwarder</text>
+  <text x="80" y="341" font-size="13.5" font-weight="600" fill="#1b1f24">Time source (NTP)</text>
+  <text x="80" y="359" font-size="12.5" fill="#3d4450">Syncs from pool.ntp.org</text>
+  <text x="80" y="377" font-size="12.5" fill="#3d4450">Hyper-V time sync IC off</text>
+
+  <!-- AZLNode1 VM -->
+  <rect x="404" y="172" width="272" height="300" rx="10" fill="#ffffff" stroke="#0f6cbd" stroke-width="1.8"/>
+  <rect x="404" y="172" width="272" height="34" rx="10" fill="#0f6cbd"/>
+  <rect x="404" y="194" width="272" height="12" fill="#0f6cbd"/>
+  <text x="420" y="195" font-size="15" font-weight="700" fill="#ffffff">VM · AZLNode1</text>
+  <text x="660" y="195" font-size="13" fill="#ffffff" text-anchor="end">Azure Local 2608</text>
+  <text x="420" y="229" font-size="12.5" fill="#3d4450">8 vCPU · 32 GB static RAM · TPM</text>
+  <text x="420" y="247" font-size="12.5" fill="#3d4450">OS disk + 2 × 1 TB data disks (S2D)</text>
+
+  <rect x="420" y="262" width="240" height="64" rx="7" fill="#e8f1fb" stroke="#0f6cbd"/>
+  <text x="432" y="283" font-size="13" font-weight="700" fill="#0f4c8a">NIC1 — management + compute</text>
+  <text x="432" y="301" font-size="12.5" fill="#1b1f24">192.168.100.50/24 · gw .1</text>
+  <text x="432" y="318" font-size="12.5" fill="#1b1f24">DNS + NTP → MCT-DC</text>
+
+  <rect x="420" y="336" width="240" height="48" rx="7" fill="#eef7ee" stroke="#2f7d32"/>
+  <text x="432" y="357" font-size="13" font-weight="700" fill="#1f5c22">NIC2 — storage</text>
+  <text x="432" y="375" font-size="12.5" fill="#1b1f24">VLAN 711 · no IP, no gateway</text>
+
+  <rect x="420" y="394" width="240" height="64" rx="7" fill="#fff6e5" stroke="#c77700"/>
+  <text x="432" y="415" font-size="13" font-weight="700" fill="#8a5300">Infrastructure IP pool</text>
+  <text x="432" y="433" font-size="12.5" fill="#1b1f24">192.168.100.51 – .59</text>
+  <text x="432" y="450" font-size="12.5" fill="#1b1f24">RDMA off on every intent</text>
+
+  <!-- DC <-> Node -->
+  <line x1="404" y1="296" x2="336" y2="296" stroke="#0f6cbd" stroke-width="2" marker-end="url(#arrB)"/>
+  <text x="370" y="286" font-size="11.5" fill="#0f6cbd" text-anchor="middle">DNS</text>
+  <text x="370" y="314" font-size="11.5" fill="#0f6cbd" text-anchor="middle">LDAP</text>
+  <text x="370" y="328" font-size="11.5" fill="#0f6cbd" text-anchor="middle">NTP</text>
+
+  <!-- vSwitch -->
+  <rect x="64" y="540" width="612" height="40" rx="8" fill="#2b3442"/>
+  <text x="370" y="565" font-size="13.5" font-weight="600" fill="#ffffff" text-anchor="middle">External vSwitch · Broadcom NetXtreme Gigabit #3 (needs 1 Gbps link)</text>
+
+  <line x1="199" y1="402" x2="199" y2="540" stroke="#5b6472" stroke-width="2"/>
+  <line x1="500" y1="472" x2="500" y2="540" stroke="#0f6cbd" stroke-width="2"/>
+  <line x1="580" y1="472" x2="580" y2="540" stroke="#2f7d32" stroke-width="2"/>
+  <text x="508" y="512" font-size="11.5" fill="#0f6cbd">NIC1</text>
+  <text x="588" y="512" font-size="11.5" fill="#2f7d32">NIC2</text>
+
+  <!-- PowerShell Direct -->
+    <text x="390" y="612" font-size="12" fill="#5b6472" font-style="italic">Host manages both VMs via PowerShell Direct</text>
+  <text x="390" y="628" font-size="12" fill="#5b6472" font-style="italic">(Invoke-Command -VMName) — no RDP needed</text>
+
+  <!-- ================= ROUTER ================= -->
+  <rect x="210" y="690" width="320" height="96" rx="10" fill="#fff4f2" stroke="#c4320a" stroke-width="1.8"/>
+  <text x="230" y="716" font-size="15" font-weight="700" fill="#1b1f24">LAN router · 192.168.100.1</text>
+  <text x="230" y="736" font-size="12.5" fill="#3d4450">Default gateway → internet (HTTPS 443)</text>
+  <text x="230" y="758" font-size="12.5" font-weight="700" fill="#c4320a">⚠ Turn off IPv6 DNS (RDNSS/DHCPv6)</text>
+  <text x="230" y="775" font-size="12" fill="#c4320a">fe80::1 as DNS breaks "Create the cluster"</text>
+  <line x1="370" y1="580" x2="370" y2="690" stroke="#5b6472" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Internet -->
+  <line x1="530" y1="738" x2="760" y2="738" stroke="#5b6472" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="645" y="728" font-size="12.5" fill="#5b6472" text-anchor="middle">Internet · outbound HTTPS</text>
+  <text x="645" y="756" font-size="11.5" fill="#5b6472" text-anchor="middle">Arc agent, LCM, updates</text>
+
+  <!-- ================= AZURE ================= -->
+  <rect x="760" y="100" width="440" height="686" rx="14" fill="#eef5fc" stroke="#0f6cbd" stroke-width="1.5"/>
+  <text x="782" y="130" font-size="17" font-weight="700" fill="#0f4c8a">Microsoft Azure</text>
+  <text x="782" y="150" font-size="13" fill="#3d4450">Subscription (Owner) · region westeurope</text>
+
+  <!-- Entra -->
+  <rect x="782" y="170" width="396" height="92" rx="10" fill="#ffffff" stroke="#8a94a3"/>
+  <text x="798" y="195" font-size="14" font-weight="700" fill="#1b1f24">Microsoft Entra ID</text>
+  <text x="798" y="215" font-size="12.5" fill="#3d4450">Service principal AzL-Arc-MCT-2610 (unique name)</text>
+  <text x="798" y="233" font-size="12.5" fill="#3d4450">Gets the token on the host → passed to the node</text>
+  <text x="798" y="251" font-size="12.5" fill="#3d4450">Delete or rotate its secret after deployment</text>
+
+  <!-- Resource group -->
+  <rect x="782" y="282" width="396" height="480" rx="10" fill="#ffffff" stroke="#0f6cbd" stroke-dasharray="7 5" stroke-width="1.5"/>
+  <text x="798" y="307" font-size="14" font-weight="700" fill="#0f4c8a">Resource group · AZL-MCT-RG</text>
+
+  <rect x="800" y="322" width="360" height="74" rx="8" fill="#e8f1fb" stroke="#0f6cbd"/>
+  <text x="814" y="345" font-size="13.5" font-weight="700" fill="#1b1f24">Azure Arc-enabled server · AZLNode1</text>
+  <text x="814" y="364" font-size="12.5" fill="#3d4450">Registered from an interactive session</text>
+  <text x="814" y="382" font-size="12.5" fill="#3d4450">Portal installs the required extensions</text>
+
+  <rect x="800" y="408" width="360" height="74" rx="8" fill="#e8f1fb" stroke="#0f6cbd"/>
+  <text x="814" y="431" font-size="13.5" font-weight="700" fill="#1b1f24">Azure Local instance</text>
+  <text x="814" y="450" font-size="12.5" fill="#3d4450">Validated + deployed from the portal</text>
+  <text x="814" y="468" font-size="12.5" fill="#3d4450">Updated from the portal after deployment</text>
+
+  <rect x="800" y="494" width="174" height="64" rx="8" fill="#f7f2fd" stroke="#6b4fbb"/>
+  <text x="814" y="518" font-size="13.5" font-weight="700" fill="#1b1f24">Key Vault</text>
+  <text x="814" y="537" font-size="12" fill="#3d4450">Created at deployment</text>
+
+  <rect x="986" y="494" width="174" height="64" rx="8" fill="#f7f2fd" stroke="#6b4fbb"/>
+  <text x="1000" y="518" font-size="13.5" font-weight="700" fill="#1b1f24">Storage account</text>
+  <text x="1000" y="537" font-size="12" fill="#3d4450">SP has Contributor role</text>
+
+  <rect x="800" y="572" width="360" height="172" rx="8" fill="#f8f9fb" stroke="#c3c9d2"/>
+  <text x="814" y="595" font-size="13" font-weight="700" fill="#1b1f24">13 resource providers registered</text>
+  <text x="814" y="616" font-size="11.5" fill="#3d4450">HybridCompute · GuestConfiguration</text>
+  <text x="814" y="633" font-size="11.5" fill="#3d4450">HybridConnectivity · AzureStackHCI</text>
+  <text x="814" y="650" font-size="11.5" fill="#3d4450">Kubernetes · KubernetesConfiguration</text>
+  <text x="814" y="667" font-size="11.5" fill="#3d4450">ExtendedLocation · ResourceConnector</text>
+  <text x="814" y="684" font-size="11.5" fill="#3d4450">HybridContainerService · Attestation</text>
+  <text x="814" y="701" font-size="11.5" fill="#3d4450">Storage · Insights · KeyVault</text>
+  <text x="814" y="728" font-size="11.5" font-style="italic" fill="#5b6472">(all Microsoft.* namespaces)</text>
+
+  <!-- Node -> Azure -->
+  <path d="M 676 360 C 730 360, 740 360, 800 360" fill="none" stroke="#0f6cbd" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrB)"/>
+  <text x="738" y="350" font-size="11.5" fill="#0f6cbd" text-anchor="middle">Arc</text>
+</svg>
