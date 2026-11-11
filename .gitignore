@@ -1,0 +1,6 @@
+*.iso
+*.vhdx
+*.vhd
+*.pfx
+*.env
+secrets*
